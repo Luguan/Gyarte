@@ -19,6 +19,7 @@ router.post('/register', function *(next) {
 	var user = new User({
 		username: this.request.body.username,
 		password: this.request.body.password,
+		permissionLevel: this.request.body.permissionLevel,
 		key: genKey()
 	});
 

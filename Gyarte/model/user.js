@@ -10,8 +10,9 @@ var Schema = mongoose.Schema;
 var user = new Schema ({
 	username: {type: String, required: true, unique: true},
 	password: {type: String, required: true},
-	key: {type: String, required: true},
+	key: {type: String, required: true, unique: true},
 	pupils: [{ type : Schema.Types.ObjectId, ref: 'Pupil' }],
+	permissionLevel: {type: Number, required: true},
 });
 
 user.pre('save', function (next) {
