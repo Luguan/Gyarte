@@ -7,6 +7,7 @@ const User = require('./model/user');
 const Register = require('./route/register');
 const RegisterPupil = require('./route/registerPupil');
 const Login = require('./route/login');
+const GetPupil = require('./route/getPupils');
 
 Mongoose.connect('mongodb://localhost/gyarte', function (err) {
 	console.log("Error is " + err);
@@ -20,6 +21,7 @@ app.use(Parser());
 app.use(Register.routes());
 app.use(RegisterPupil.routes());
 app.use(Login.routes());
+app.use(GetPupil.routes());
 
 app.use(Register.allowedMethods());
 app.use(Login.allowedMethods());
