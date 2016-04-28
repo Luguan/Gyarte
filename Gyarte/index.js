@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const Serve = require('koa-static');
 const Router = require('koa-router');
 const Parser = require('koa-bodyparser');
 const Mongoose = require('mongoose');
@@ -17,6 +18,7 @@ const app = new Koa();
 const router = new Router();
 
 app.use(Parser());
+app.use(Serve('./html'));
 
 app.use(Register.routes());
 app.use(RegisterPupil.routes());
