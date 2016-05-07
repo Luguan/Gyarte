@@ -1,11 +1,13 @@
 package luguan.me.gyarte;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,13 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import java.util.Objects;
-
-import luguan.me.gyarte.dummy.DummyContent;
+import luguan.me.gyarte.response.Pupil;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PupilListFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PupilListFragment.OnListFragmentInteractionListener, PupilInfo.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +29,16 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, LoginActivity.class));
         }
 
+        Fragment fragment = new PupilListFragment();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_fragment, fragment);
+        transaction.commit();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -109,7 +108,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Pupil pupil) {
+        Toast.makeText(this, pupil.getName(), Toast.LENGTH_SHORT).show();
+
+        Fragment fragment = new PupilInfo();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_fragment, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

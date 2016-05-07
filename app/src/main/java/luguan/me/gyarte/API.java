@@ -9,7 +9,7 @@ import retrofit.Retrofit;
 public class API {
     public  final String BASE_URL = "http://192.168.1.100:3000";
 
-     Retrofit retrofit = new Retrofit.Builder()
+    Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
@@ -18,5 +18,5 @@ public class API {
         return apiService;
     }
 
-     ApiInterface apiService = retrofit.create(ApiInterface.class);
+    ApiInterface apiService = retrofit.create(ApiInterface.class);
 }

@@ -1,6 +1,7 @@
 package luguan.me.gyarte;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,9 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import luguan.me.gyarte.dummy.DummyContent;
 import luguan.me.gyarte.dummy.DummyContent.DummyItem;
+import luguan.me.gyarte.response.LoginResponse;
+import luguan.me.gyarte.response.Pupil;
+import luguan.me.gyarte.response.PupilsResponse;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 import java.util.List;
 
@@ -28,6 +37,8 @@ public class PupilListFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,6 +64,24 @@ public class PupilListFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        Call<PupilsResponse> call = GyarteApplication.getInstance().getApiInstance().apiService.getPupils(new GetPupils(GyarteApplication.getInstance().getKey()));
+        call.enqueue(new Callback<PupilsResponse>() {
+            @Override
+            public void onResponse(Response<PupilsResponse> response, Retrofit retrofit) {
+                int statusCode = response.code();
+                PupilsResponse response1 = response.body();
+                if(response1.getPupils() != null) {
+                    recyclerView.setAdapter(new MyPupilRecyclerViewAdapter(response1.getPupils(), mListener));
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                // Log error here since request failed
+                Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -69,7 +98,7 @@ public class PupilListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyPupilRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            this.recyclerView = recyclerView;
         }
         return view;
     }
@@ -105,6 +134,6 @@ public class PupilListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Pupil pupil);
     }
 }

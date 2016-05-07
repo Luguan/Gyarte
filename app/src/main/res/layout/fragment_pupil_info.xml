@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="luguan.me.gyarte.PupilInfo"
+    android:orientation="vertical">
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="307dp"
+        android:id="@+id/calendarView" />
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="false" >
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/present"
+            android:id="@+id/checkBox"
+            android:hint="@string/grade_work"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText2" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

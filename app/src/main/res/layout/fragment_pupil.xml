@@ -2,19 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/id"
+        tools:text="David"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/content"
+        tools:text="HA13"
+        android:id="@+id/pupilClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:gravity="right"
         android:textAppearance="?attr/textAppearanceListItem" />
 </LinearLayout>

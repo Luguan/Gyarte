@@ -1,6 +1,7 @@
 package luguan.me.gyarte;
 
 import luguan.me.gyarte.response.LoginResponse;
+import luguan.me.gyarte.response.PupilsResponse;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.POST;
@@ -14,4 +15,7 @@ public interface ApiInterface {
 
     @POST("/login")
     Call<LoginResponse> login(@Body User user);
+
+    @POST("/pupilList")
+    Call<PupilsResponse> getPupils(@Body GetPupils pupil);
 }

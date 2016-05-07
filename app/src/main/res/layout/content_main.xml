@@ -12,11 +12,9 @@
     tools:context="luguan.me.gyarte.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <fragment
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:name="luguan.me.gyarte.PupilListFragment"
+    <RelativeLayout
         android:id="@+id/main_fragment"
-        tools:layout="@layout/fragment_pupil_list" />
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent" />
 
 </RelativeLayout>
