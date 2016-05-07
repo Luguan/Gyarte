@@ -13,6 +13,8 @@ router.post('/registerPupil', function *(next) {
 	if(admin.permissionLevel === 100) {
 		var pupil = new Pupil({
 			name: this.request.body.name,
+			class: this.request.body.class,
+			telephone: this.request.body.telephone
 		});
 		user.pupils.push(pupil);
 		yield user.save();

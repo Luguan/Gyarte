@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="login.css">
   </head>
   <body>
-    <div class="container offset-top" name="login">
-      <div class="row">
+    <div class="container offset-top">
+      <div class="row" name="login">
         <div class="col-sm-6" >
           <form id="loginForm">
             <fieldset class="form-group">
@@ -33,11 +33,58 @@
           </div>
         </div>
       </div>
+      <div class="row" name="adminWeb">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" name="register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" name="registerPupil">Register pupil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Remove pupils</a>
+          </li>
+        </ul>
+        <form id="registerPupilForm">
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Supervisor</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User" name="userPupil">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name" name="name">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Telephone number</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="07X-XXXXXXXX" name="telephone">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Class</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Class" name="class">
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <form id="registerForm">
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1">Supervisor</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User" name="user">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleInputPassword1">Enter password again</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm password" name="password2">
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
-
-    <div name="register">
-      <h1>Hej</h1>
-    </div>
-    <script src="web.js"></script>
+    <script src="login.js"></script>
+    <script src="registerPupil.js"></script>
+    <script src="register.js"></script>
+    <script src="sendInfo.js"></script>
+    <script src="nav.js"></script>
   </body>
 </html>

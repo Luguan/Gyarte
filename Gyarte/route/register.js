@@ -16,12 +16,16 @@ function genKey() {
 }
 
 router.post('/register', function *(next) {
-	var user = new User({
-		username: this.request.body.username,
-		password: this.request.body.password,
-		permissionLevel: this.request.body.permissionLevel,
-		key: genKey()
-	});
+	const admin = yield User.findOne({key: this.request.body.adminKey});
+
+	if(admin.permissionLevel === 100) {
+		var user = new User({
+			username: this.request.body.username,
+			password: this.request.body.password,
+			permissionLevel: this.request.body.permissionLevel,
+			key: genKey()
+		});
+	}
 
 	try {
 		yield user.save();
