@@ -3,14 +3,10 @@ package luguan.me.gyarte;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -29,34 +25,49 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        Fragment fragment = new PupilListFragment();
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment, fragment);
-        transaction.commit();
+       createPupilListFragment();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+    }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+    private void createPupilListFragment() {
+        Fragment fragment = new PupilListFragment();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_fragment, fragment, "Pupil List").addToBackStack("Pupil_List");
+        transaction.commit();
+    }
+
+    private void createPupilInfoFragment() {
+        Fragment fragment = new PupilInfo();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_fragment, fragment, "Pupil Info").addToBackStack("Pupil_Info");
+        transaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            // End of back stack, minimize the app instead of going back into the loginscreen
+            moveTaskToBack(true);
+        }
+        else {
             super.onBackPressed();
+            Fragment pupilInfoFragment = getSupportFragmentManager().findFragmentByTag("Pupil_Info");
+            if (pupilInfoFragment != null && pupilInfoFragment.isVisible()) {
+                createPupilListFragment();
+            }
+            Fragment pupilListFragment = getSupportFragmentManager().findFragmentByTag("Pupil_List");
+            if(pupilListFragment != null && pupilListFragment.isVisible()) {
+                createPupilInfoFragment();
+            }
         }
     }
 
@@ -101,9 +112,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -111,12 +119,7 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(Pupil pupil) {
         Toast.makeText(this, pupil.getName(), Toast.LENGTH_SHORT).show();
 
-        Fragment fragment = new PupilInfo();
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment, fragment);
-        transaction.commit();
+        createPupilInfoFragment();
     }
 
     @Override
