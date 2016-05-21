@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_fragment, fragment, "Pupil List").addToBackStack("Pupil_List");
+        transaction.replace(R.id.main_fragment, fragment, "Pupil List");
         transaction.commit();
     }
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.replace(R.id.main_fragment, fragment, "Pupil Info").addToBackStack("Pupil_Info");
         transaction.commit();
     }

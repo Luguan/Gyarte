@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   const register = document.querySelector("#registerPupilForm");
   const user = document.querySelector("[name=userPupil]");

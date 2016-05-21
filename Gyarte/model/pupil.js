@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 var pupil = new mongoose.Schema({

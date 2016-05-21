@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Router = require('koa-router');
 const User = mongoose.model('User');

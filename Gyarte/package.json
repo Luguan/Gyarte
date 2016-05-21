@@ -11,9 +11,10 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "bluebird": "^3.0.5",
-    "koa": "^1.1.0",
+    "koa": "^1.2.0",
     "koa-bodyparser": "^2.0.1",
     "koa-router": "^5.2.3",
+    "koa-static": "^2.0.0",
     "mongoose": "^4.1.12"
   }
 }

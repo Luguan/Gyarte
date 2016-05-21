@@ -1,3 +1,5 @@
+'use strict';
+
 (function (){
   const login = document.querySelector("[name=login]");
   const adminWeb = document.querySelector("[name=adminWeb]");

@@ -1,3 +1,5 @@
+'use strict';
+
 const Koa = require('koa');
 const Serve = require('koa-static');
 const Router = require('koa-router');
@@ -9,6 +11,7 @@ const Register = require('./route/register');
 const RegisterPupil = require('./route/registerPupil');
 const Login = require('./route/login');
 const GetPupil = require('./route/getPupils');
+const dayInfo = require('./route/dayInfo');
 
 Mongoose.connect('mongodb://localhost/gyarte', function (err) {
 	console.log("Error is " + err);
@@ -24,6 +27,7 @@ app.use(Register.routes());
 app.use(RegisterPupil.routes());
 app.use(Login.routes());
 app.use(GetPupil.routes());
+app.use(dayInfo.routes());
 
 app.use(Register.allowedMethods());
 app.use(Login.allowedMethods());

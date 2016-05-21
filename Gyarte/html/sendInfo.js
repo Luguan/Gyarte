@@ -1,3 +1,5 @@
+'use strict';
+
 function sendInfo(info, url, callback) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {

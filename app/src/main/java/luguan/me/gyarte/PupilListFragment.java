@@ -57,13 +57,7 @@ public class PupilListFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+    private void loadPupils() {
         Call<PupilsResponse> call = GyarteApplication.getInstance().getApiInstance().apiService.getPupils(new GetPupils(GyarteApplication.getInstance().getKey()));
         call.enqueue(new Callback<PupilsResponse>() {
             @Override
@@ -81,12 +75,12 @@ public class PupilListFragment extends Fragment {
                 Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        loadPupils();
         View view = inflater.inflate(R.layout.fragment_pupil_list, container, false);
 
         // Set the adapter
