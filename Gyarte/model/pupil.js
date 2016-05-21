@@ -7,7 +7,8 @@ var pupil = new mongoose.Schema({
 	class: {type: String},
 	telephone: {type: String},
 	dayInfo: {
-
+		type: {},
+		default: {}
 	}
 
 })

@@ -16,7 +16,7 @@ router.post('/dayInfo', function *(next) {
         correctPupil = pupil;
         pupil.dayInfo[this.request.body.date] ={
           comment: this.request.body.comment,
-          present: this.requst.body.present
+          present: this.request.body.present
         }
       }
     });
@@ -24,6 +24,9 @@ router.post('/dayInfo', function *(next) {
       correctPupil.markModified('dayInfo');
       yield correctPupil.save();
       this.body = {success: true};
+    }
+    else {
+      this.body = {message: "pupil not found"};
     }
   }
 })
