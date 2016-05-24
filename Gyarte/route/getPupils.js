@@ -18,17 +18,7 @@ router.post('/pupilList', function *(next) {
 		this.body = {pupils: pupils};
 	}
 	else {
-		this.body = {message: "You must be logged in to continue", pupils};
-	}
-})
-router.post('/pupil', function *(next) {
-	const user = yield User.findOne({key: this.request.body.key});
-	if(user) {
-
-		//const pupil = yield Pupils.findOne({_id: this.request.body.id});
-	}
-	else {
-		this.body = {message: "You must be logged in to continue", pupils};
+		this.body = {message: "You must be logged in to continue"};
 	}
 })
 

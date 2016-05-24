@@ -59,23 +59,23 @@ public class PupilListFragment extends Fragment {
 
     private void loadPupils() {
         Call<PupilsResponse> call = GyarteApplication.getInstance().getApiInstance().apiService.getPupils(new GetPupils(GyarteApplication.getInstance().getKey()));
-        call.enqueue(new Callback<PupilsResponse>() {
-            @Override
-            public void onResponse(Response<PupilsResponse> response, Retrofit retrofit) {
-                int statusCode = response.code();
-                PupilsResponse response1 = response.body();
-                if(response1.getPupils() != null) {
-                    recyclerView.setAdapter(new MyPupilRecyclerViewAdapter(response1.getPupils(), mListener));
-                }
+    call.enqueue(new Callback<PupilsResponse>() {
+        @Override
+        public void onResponse(Response<PupilsResponse> response, Retrofit retrofit) {
+            int statusCode = response.code();
+            PupilsResponse response1 = response.body();
+            if(response1.getPupils() != null) {
+                recyclerView.setAdapter(new MyPupilRecyclerViewAdapter(response1.getPupils(), mListener));
             }
+        }
 
-            @Override
-            public void onFailure(Throwable t) {
-                // Log error here since request failed
-                Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+        @Override
+        public void onFailure(Throwable t) {
+            // Log error here since request failed
+            Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+        }
+    });
+}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

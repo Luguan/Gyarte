@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -26,6 +30,8 @@ public class PupilInfo extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private CalendarView calendarView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +70,20 @@ public class PupilInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pupil_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_pupil_info, container, false);
+
+        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+
+        getTodaysDate();
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                getPupilInfo();
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +108,15 @@ public class PupilInfo extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private String getTodaysDate() {
+        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+        return format.format(new Date(calendarView.getDate()));
+    }
+
+    private void getPupilInfo() {
+        
     }
 
     /**
