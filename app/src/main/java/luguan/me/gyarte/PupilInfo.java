@@ -12,6 +12,9 @@ import android.widget.CalendarView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import luguan.me.gyarte.response.getDayInfoResponse;
+import retrofit.Call;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -116,7 +119,7 @@ public class PupilInfo extends Fragment {
     }
 
     private void getPupilInfo() {
-        
+        Call<getDayInfoResponse> call = GyarteApplication.getInstance().getApiInstance().apiService.getDayInfo(new GetDayInfo(GyarteApplication.getInstance().getKey(), ))
     }
 
     /**

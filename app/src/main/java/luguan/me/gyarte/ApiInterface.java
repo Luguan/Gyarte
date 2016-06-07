@@ -2,6 +2,7 @@ package luguan.me.gyarte;
 
 import luguan.me.gyarte.response.LoginResponse;
 import luguan.me.gyarte.response.PupilsResponse;
+import luguan.me.gyarte.response.getDayInfoResponse;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.POST;
@@ -18,4 +19,7 @@ public interface ApiInterface {
 
     @POST("/pupilList")
     Call<PupilsResponse> getPupils(@Body GetPupils pupil);
+
+    @POST("/getDayInfo")
+    Call<getDayInfoResponse> getDayInfo(@Body GetDayInfo dayInfo);
 }

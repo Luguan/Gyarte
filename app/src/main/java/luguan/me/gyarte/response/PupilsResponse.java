@@ -12,5 +12,4 @@ public class PupilsResponse {
 
     private List<Pupil> pupils;
 
-
 }

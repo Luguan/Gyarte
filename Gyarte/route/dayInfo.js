@@ -17,8 +17,7 @@ if(user) {
     correctPupil.markModified('dayInfo');
     correctPupil.dayInfo[this.request.body.date] ={
       comment: this.request.body.comment,
-      present: this.request.body.present,
-      success: true
+      present: this.request.body.present
     }
     yield correctPupil.save();
   }
@@ -36,8 +35,7 @@ router.post('/getDayInfo', function *() {
   if(correctPupil) {
     this.body = {
     comment: correctPupil.dayInfo[this.request.body.date].comment,
-    present: correctPupil.dayInfo[this.request.body.date].present,
-    success: true};
+    present: correctPupil.dayInfo[this.request.body.date].present};
   }
   else {
     this.body = {message: "pupil not found"};
@@ -45,7 +43,7 @@ router.post('/getDayInfo', function *() {
 })
 
 function getPupil(user, id) {
-  return user.pupil.find(pupil => pupil._id.equals(id));
+  return user.pupils.find(pupil => pupil._id.equals(id));
 }
 
 module.exports = router;
